@@ -1,0 +1,2 @@
+package ma.ebank.ebank; import jakarta.persistence.*; import java.math.BigDecimal; import java.time.Instant;
+@Entity public class BankAccount { @Id public String id; @Column(unique=true) public String ribReference; public Long customerId; @Column(precision=19,scale=2,nullable=false) public BigDecimal balance; public String currency="MAD"; @Enumerated(EnumType.STRING) public AccountType type; public String status="ACTIVE"; public String agency; public Instant createdAt=Instant.now(); @Version public Long version; public enum AccountType { CURRENT_ACCOUNT,SAVINGS_ACCOUNT } }

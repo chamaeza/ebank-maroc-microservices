@@ -1,0 +1,2 @@
+package ma.ebank.ebank; import jakarta.persistence.*; import java.math.BigDecimal; import java.time.Instant;
+@Entity public class BankOperation { @Id @GeneratedValue(strategy=GenerationType.IDENTITY) public Long id; public String accountId; public String type; @Column(precision=19,scale=2) public BigDecimal amount; public String reference; public String description; public Instant createdAt=Instant.now(); }

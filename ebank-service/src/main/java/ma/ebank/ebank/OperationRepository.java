@@ -1,0 +1,1 @@
+package ma.ebank.ebank; import org.springframework.data.jpa.repository.JpaRepository; import java.util.List; public interface OperationRepository extends JpaRepository<BankOperation,Long>{ List<BankOperation> findByAccountIdOrderByCreatedAtDesc(String id); }

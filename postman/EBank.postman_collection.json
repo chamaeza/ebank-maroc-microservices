@@ -1,0 +1,202 @@
+{
+  "info": {
+    "name": "EBank Maroc",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8888"
+    }
+  ],
+  "item": [
+    {
+      "name": "Clients",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/customers",
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comptes",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/accounts",
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Details Feign",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/accounts/ACC-001/details",
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Credit",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/accounts/ACC-001/credit",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"amount\": 500, \"description\": \"Depot demo\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Debit",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/accounts/ACC-001/debit",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"amount\": 100, \"description\": \"Retrait demo\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Virement",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/accounts/transfer",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"from\": \"ACC-001\", \"to\": \"ACC-002\", \"amount\": 200}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Historique",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/accounts/ACC-001/operations",
+        "header": []
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Creation compte",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/api/accounts",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"customerId\": 1, \"type\": \"CURRENT_ACCOUNT\", \"agency\": \"Casablanca Centre\"}"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"HTTP succes\", () => pm.expect(pm.response.code).to.be.oneOf([200,201]));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
